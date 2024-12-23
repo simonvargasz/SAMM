@@ -47,30 +47,30 @@ namespace SAMM
                 {
                     case "Todos":
                         var info = _dataService.ObtenerInfoPorAltura(altura);
-                        datos.Add(FieldDescriptions.GetDescription("dir_viento"), info.dirViento);
-                        datos.Add(FieldDescriptions.GetDescription("vel_viento"), info.velViento);
-                        datos.Add(FieldDescriptions.GetDescription("temp_air"), info.tempAir);
-                        datos.Add(FieldDescriptions.GetDescription("dens_air"), info.densAir);
+                        datos.Add(FieldDescriptions.GetDescription("dir_viento"), info.dirViento + "‰");
+                        datos.Add(FieldDescriptions.GetDescription("vel_viento"), info.velViento + " nudos");
+                        datos.Add(FieldDescriptions.GetDescription("temp_air"), info.tempAir + " °C");
+                        datos.Add(FieldDescriptions.GetDescription("dens_air"), info.densAir + " kg/m³");
                         datos.Add(FieldDescriptions.GetDescription("octante"), info.octante);
-                        datos.Add(FieldDescriptions.GetDescription("latitud"), info.latitud);
-                        datos.Add(FieldDescriptions.GetDescription("longitud"), info.longitud);
+                        datos.Add(FieldDescriptions.GetDescription("latitud"), info.latitud + "°");
+                        datos.Add(FieldDescriptions.GetDescription("longitud"), info.longitud + "°");
                         datos.Add(FieldDescriptions.GetDescription("fecha"), info.fecha);
-                        datos.Add(FieldDescriptions.GetDescription("hora"), info.hora);
+                        datos.Add(FieldDescriptions.GetDescription("hora"), info.hora + " UTC");
                         datos.Add(FieldDescriptions.GetDescription("validez"), info.validez);
-                        datos.Add(FieldDescriptions.GetDescription("altitud"), info.altitud);
-                        datos.Add(FieldDescriptions.GetDescription("presion"), info.presion);
+                        datos.Add(FieldDescriptions.GetDescription("altitud"), info.altitud + " m");
+                        datos.Add(FieldDescriptions.GetDescription("presion"), info.presion + " hPa");
                         break;
                     case "Direccion de viento":
-                        datos.Add(FieldDescriptions.GetDescription("dir_viento"), _dataService.ObtenerDirVientoPorAltura(altura));
+                        datos.Add(FieldDescriptions.GetDescription("dir_viento"), _dataService.ObtenerDirVientoPorAltura(altura) + "‰");
                         break;
                     case "Velocidad de viento":
-                        datos.Add(FieldDescriptions.GetDescription("vel_viento"), _dataService.ObtenerVelVientoPorAltura(altura));
+                        datos.Add(FieldDescriptions.GetDescription("vel_viento"), _dataService.ObtenerVelVientoPorAltura(altura) + " nudos");
                         break;
                     case "Temperatura Balistica":
-                        datos.Add(FieldDescriptions.GetDescription("temp_air"), _dataService.ObtenerTempAirPorAltura(altura));
+                        datos.Add(FieldDescriptions.GetDescription("temp_air"), _dataService.ObtenerTempAirPorAltura(altura) + " °C");
                         break;
                     case "Densidad Balistica":
-                        datos.Add(FieldDescriptions.GetDescription("dens_air"), _dataService.ObtenerDensAirPorAltura(altura));
+                        datos.Add(FieldDescriptions.GetDescription("dens_air"), _dataService.ObtenerDensAirPorAltura(altura) + " kg/m³");
                         break;
                 }
 

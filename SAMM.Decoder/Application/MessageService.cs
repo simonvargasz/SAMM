@@ -69,7 +69,7 @@ namespace SAMM.Decoder.Application
                 return (false, 0, 0, "", "", "", 0, 0, 0);
             }
 
-            string header = message.Substring(0, 24);
+            string header = message[..24];
 
             for (int i = 0; i < header.Length; i += 6)
             {
@@ -92,7 +92,7 @@ namespace SAMM.Decoder.Application
                 return (false, 0, 0, "", "", "", 0, 0, 0);
             }
 
-            if (!int.TryParse(secondGroup.Substring(0, 3), out int rawLatitude) ||
+            if (!int.TryParse(secondGroup[..3], out int rawLatitude) ||
                 !int.TryParse(secondGroup.Substring(3, 3), out int rawLongitude))
             {
                 return (false, 0, 0, "", "", "", 0, 0, 0);
@@ -131,7 +131,7 @@ namespace SAMM.Decoder.Application
                 return (false, new List<(int, int, int, float, float)>());
             }
 
-            string body = message.Substring(24);
+            string body = message[24..];
 
             if (body.Length % 12 != 0)
             {
@@ -147,7 +147,7 @@ namespace SAMM.Decoder.Application
                 }
                 else
                 {
-                    bodyGroups.Add(body.Substring(i));
+                    bodyGroups.Add(body[i..]);
                 }
             }
 

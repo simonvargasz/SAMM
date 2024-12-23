@@ -46,7 +46,7 @@ namespace SAMM.Decoder.Domain
         public static (bool, string, string, int) ProcessTime(string message)
         {
 
-            string day = message.Substring(0, 2);
+            string day = message[..2];
 
             if (int.Parse(day) > 31 || int.Parse(day) < 1)
             {
@@ -60,11 +60,11 @@ namespace SAMM.Decoder.Domain
                 return (false, "", "", 0);
 
             }
-            int hours = int.Parse(time.Substring(0, 2));
-            float minutes = float.Parse(time.Substring(2)) / 10 * 60;
+            int hours = int.Parse(time[..2]);
+            float minutes = float.Parse(time[2..]) / 10 * 60;
 
 
-            int duration = int.Parse(message.Substring(5));
+            int duration = int.Parse(message[5..]);
             if (duration == 9)
             {
                 duration = 12;
@@ -81,7 +81,7 @@ namespace SAMM.Decoder.Domain
 
         public static (bool, int, float) ProcessAltitude(string message)
         {
-            int altitude = int.Parse(message.Substring(0, 3));
+            int altitude = int.Parse(message[..3]);
             float rawPressure = int.Parse(message.Substring(3, 3));
             float pressure = rawPressure / 10;
             if (rawPressure < 500)
@@ -96,7 +96,7 @@ namespace SAMM.Decoder.Domain
 
         public static (bool, int, int, int, float, float) ProcessBody(string message)
         {
-            int layer = int.Parse(message.Substring(0, 2));
+            int layer = int.Parse(message[..2]);
             int direction = int.Parse(message.Substring(2, 2));
 
             if (direction < 0 || direction > 64)
@@ -107,7 +107,7 @@ namespace SAMM.Decoder.Domain
             {
                 direction = direction * 100;
             }
-            int speed = int.Parse(message.Substring(3, 3));
+            int speed = int.Parse(message.Substring(4, 2));
             float airTemp = float.Parse(message.Substring(6, 3));
             float airDensity = float.Parse(message.Substring(9, 3));
             airTemp /= 10;
